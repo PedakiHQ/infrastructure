@@ -4,16 +4,18 @@ import * as aws from "@pulumi/aws";
 export class StaticBucket extends pulumi.ComponentResource {
 
     constructor(opts?: pulumi.ComponentResourceOptions) {
-        super("custom:resource:StaticBucket", "static-bucket", {}, opts);
+        super("custom:resource:StaticBucket", "static.pedaki.fr", {}, opts);
 
-        const bucket = new aws.s3.Bucket("static.pedaki.fr");
+        const bucket = new aws.s3.Bucket("static.pedaki.fr", {
+            bucket: "static.pedaki.fr",
+        });
 
         const publicAccessBlock = new aws.s3.BucketPublicAccessBlock("publicAccessBlock", {
             bucket: bucket.id,
-            blockPublicAcls: true,
-            blockPublicPolicy: true,
-            ignorePublicAcls: true,
-            restrictPublicBuckets: true,
+            blockPublicAcls: false,
+            blockPublicPolicy: false,
+            ignorePublicAcls: false,
+            restrictPublicBuckets: false,
         });
 
         new aws.s3.BucketPolicy("bucket-policy", {

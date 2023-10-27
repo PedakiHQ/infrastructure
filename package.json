@@ -7,7 +7,7 @@
     "keywords": [
         "pedaki"
     ],
-    "main": "aws/index.ts",
+    "main": "src/aws/index.ts",
     "dependencies": {
         "@pulumi/aws": "^6.6.1",
         "@pulumi/pulumi": "^3.91.0"

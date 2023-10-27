@@ -8,7 +8,7 @@ export class StaticBucket extends pulumi.ComponentResource {
 
         const bucket = new aws.s3.Bucket("static.pedaki.fr");
 
-        const publicAccessBlock = new aws.s3.BucketPublicAccessBlock("exampleBucketPublicAccessBlock", {
+        const publicAccessBlock = new aws.s3.BucketPublicAccessBlock("publicAccessBlock", {
             bucket: bucket.id,
             blockPublicAcls: true,
             blockPublicPolicy: true,

@@ -1,9 +1,20 @@
 name: Pulumi
 on:
-  - pull_request
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        required: true
+        default: 'dev'
+        options:
+          - 'dev'
+          - 'prod'
 jobs:
   preview:
-    name: Preview
+    name: Update ${{ github.event.inputs.environment || 'dev' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,8 +33,8 @@ jobs:
 
       - uses: pulumi/actions@v3
         with:
-          command: preview
-          stack-name: pedaki/infrastructure/dev
+          command: up
+          stack-name: pedaki/infrastructure/${{ github.event.inputs.environment || 'dev' }}
           comment-on-pr: true
           comment-on-summary: true
         env:

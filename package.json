@@ -1,11 +1,26 @@
 {
-    "name": "infrastructure",
-    "main": "aws/index.ts",
-    "devDependencies": {
-        "@types/node": "^18"
-    },
+    "name": "@pedaki/infrastructure",
+    "version": "0.0.0",
+    "private": true,
+    "repository": "https://github.com/PedakiHQ/infrastructure.git",
+    "author": "Nathan David <me@vahor.fr>",
+    "keywords": [
+        "pedaki"
+    ],
+    "main": "src/aws/index.ts",
     "dependencies": {
         "@pulumi/aws": "^6.6.1",
         "@pulumi/pulumi": "^3.91.0"
-    }
+    },
+    "devDependencies": {
+        "typescript": "^5.2.2",
+        "@types/node": "^18"
+    },
+    "engines": {
+        "node": ">=18.17.0 <19.0.0",
+        "pnpm": ">=8.0.0",
+        "yarn": "use-pnpm",
+        "npm": "use-pnpm"
+    },
+    "packageManager": "pnpm@8.7.6"
 }

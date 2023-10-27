@@ -11,9 +11,8 @@
         "noFallthroughCasesInSwitch": true,
         "noImplicitReturns": true,
         "forceConsistentCasingInFileNames": true,
-        "allowImportingTsExtensions": true
     },
     "files": [
-        "aws/index.ts"
+        "src/aws/index.ts"
     ]
 }

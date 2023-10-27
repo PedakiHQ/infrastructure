@@ -8,7 +8,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: npm install
+      - uses: pnpm/action-setup@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile --prefer-offline
+
       - uses: pulumi/actions@v3
         with:
           command: preview

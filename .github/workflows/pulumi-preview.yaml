@@ -6,6 +6,9 @@ jobs:
     name: Preview
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
+      - run: npm install
       - uses: pulumi/actions@v3
         with:
           command: preview

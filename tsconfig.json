@@ -6,26 +6,13 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "sourceMap": true,
+        "experimentalDecorators": true,
         "pretty": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitReturns": true,
         "forceConsistentCasingInFileNames": true,
-        "allowImportingTsExtensions": true,
-        "noEmit": true,
-        "incremental": false,
-        "noUncheckedIndexedAccess": true,
-        "skipDefaultLibCheck": true,
-        "composite": false,
-        "declaration": false,
-        "declarationMap": false,
-        "inlineSources": false,
-        "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        "preserveWatchOutput": true,
-        "experimentalDecorators": true,
-        "verbatimModuleSyntax": true
     },
-    "include": [
-        "src"
+    "files": [
+        "src/aws/index.ts"
     ]
 }

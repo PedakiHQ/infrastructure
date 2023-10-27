@@ -1,3 +1,3 @@
-import {StaticBucket} from "./resources/static.ts";
+import {StaticBucket} from "./resources/static";
 
 new StaticBucket();

@@ -1,0 +1,11 @@
+{
+    "name": "infrastructure",
+    "main": "aws/index.ts",
+    "devDependencies": {
+        "@types/node": "^18"
+    },
+    "dependencies": {
+        "@pulumi/aws": "^6.6.1",
+        "@pulumi/pulumi": "^3.91.0"
+    }
+}

@@ -12,74 +12,70 @@ export const createApiPulumiUser = () => {
             Version: "2012-10-17",
             Statement: [
                 {
-                    Sid: "AllowEC2Types",
+                    Sid: "AllowEC2RDS",
+                    Action: [
+                        "ec2:*",
+                        "rds:*",
+                    ],
+                    Effect: "Allow",
+                    Resource: "*",
+                },
+                {
+                    Sid: "RestrictEC2",
                     Action: [
                         "ec2:RunInstances",
-                        "ec2:TerminateInstances",
-                        "ec2:StartInstances",
-                        "ec2:StopInstances",
                     ],
-                    Effect: "Allow",
+                    Effect: "Deny",
+                    Resource: "arn:aws:ec2:*:*:instance/*",
+                    Condition: {
+                        "ForAnyValue:StringNotLike": {
+                            "ec2:InstanceType": [
+                                "*.nano",
+                                "*.micro",
+                                "*.small"
+                            ]
+                        }
+                    }
+                },
+                {
+                    Sid: "RestrictRDSTypes",
+                    Action: [
+                        "rds:CreateDBInstance",
+                    ],
+                    Effect: "Deny",
                     Resource: "*",
                     Condition: {
-                        StringEquals: {
-                            "ec2:InstanceType": "t2.micro",
-                        },
-                    },
-                },
-                {
-                    Sid: "AllowEC2Describe",
-                    Action: ["ec2:Describe*"],
-                    Effect: "Allow",
-                    Resource: "*",
-                },
-                {
-                    Sid: "AllowEC2Vpc",
-                    Action: [
-                        "ec2:CreateVpc",
-                        "ec2:DeleteVpc",
-                        "ec2:CreateSubnet",
-                        "ec2:DeleteSubnet",
-                        "ec2:CreateSecurityGroup",
-                        "ec2:DeleteSecurityGroup",
-                        "ec2:AuthorizeSecurityGroupIngress",
-                        "ec2:RevokeSecurityGroupIngress",
-                        "ec2:ModifyVpcAttribute",
-                    ],
-                    Effect: "Allow",
-                    Resource: "*",
+                        "ForAnyValue:StringNotLike": {
+                            "rds:DBInstanceClass": [
+                                "*.nano",
+                                "*.micro",
+                                "*.small"
+                            ]
+                        }
+                    }
                 },
                 {
                     Sid: "Tagging",
                     Action: [
                         "ec2:CreateTags",
                         "ec2:DeleteTags",
+                        "rds:AddTagsToResource",
+                        "rds:RemoveTagsFromResource",
+                        "rds:ListTagsForResource",
                     ],
                     Effect: "Allow",
                     Resource: [
                         "arn:aws:ec2:*:*:instance/*",
                         "arn:aws:ec2:*:*:network-interface/*",
                         "arn:aws:ec2:*:*:security-group/*",
+                        "arn:aws:ec2:*:*:internet-gateway/*",
+                        "arn:aws:ec2:*:*:route-table/*",
                         "arn:aws:ec2:*:*:subnet/*",
                         "arn:aws:ec2:*:*:volume/*",
                         "arn:aws:ec2:*:*:vpc/*",
+                        "arn:aws:rds:*:*:subgrp:*",
+                        "arn:aws:rds:*:*:db:*",
                     ]
-                },
-                {
-                    Sid: "AllowRDSTypes",
-                    Action: [
-                        "rds:CreateDBInstance",
-                        "rds:DeleteDBInstance",
-                        "rds:StartDBInstance",
-                        "rds:StopDBInstance",
-                    ],
-                    Effect: "Allow",
-                    Resource: "*",
-                    Condition: {
-                        StringEquals: {
-                            "rds:DatabaseClass": "db.t2.micro",
-                        },
-                    },
                 }
             ],
         },

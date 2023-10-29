@@ -1,11 +1,8 @@
-import * as pulumi from '@pulumi/pulumi';
 import * as aws from "@pulumi/aws";
 
-export class StaticBucket extends pulumi.ComponentResource {
+export class StaticBucket {
 
-    constructor(opts?: pulumi.ComponentResourceOptions) {
-        super("custom:resource:StaticBucket", "static.pedaki.fr", {}, opts);
-
+    constructor() {
         const bucket = new aws.s3.Bucket("static.pedaki.fr", {
             bucket: "static.pedaki.fr",
         });
@@ -18,7 +15,7 @@ export class StaticBucket extends pulumi.ComponentResource {
             restrictPublicBuckets: false,
         });
 
-        new aws.s3.BucketPolicy("bucket-policy", {
+        const _ = new aws.s3.BucketPolicy("bucket-policy", {
             bucket: bucket.id,
             policy: bucket.arn.apply((arn) => JSON.stringify({
                 Version: "2012-10-17",
@@ -30,9 +27,5 @@ export class StaticBucket extends pulumi.ComponentResource {
                 }],
             })),
         }, {dependsOn: [publicAccessBlock]});
-
-        this.registerOutputs({
-            bucketName: bucket.id,
-        });
     }
 }

@@ -1,1 +1,2 @@
-C'est juste des notes, il faut copié/collé les infos si on veut recréer un env
+Policies utilisée pour le oidc pulumi.
+Ce compte doit avoir les permissions nécéssaires pour créer des ressources dans le compte aws.

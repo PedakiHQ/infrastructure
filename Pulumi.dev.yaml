@@ -1,3 +1,2 @@
 environment:
-  imports:
-    - aws-dev
+  - aws-dev

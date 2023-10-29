@@ -1,5 +1,5 @@
-import {StaticBucket} from "./resources/static";
-import {ApiPulumiUser} from "./users/api-pulumi";
+import {createStaticBucket} from "./resources/static";
+import {createApiPulumiUser} from "./users/api-pulumi";
 
-new StaticBucket();
-new ApiPulumiUser()
+createStaticBucket();
+createApiPulumiUser();

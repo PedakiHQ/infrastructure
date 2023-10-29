@@ -5,24 +5,26 @@
       "Sid": "ManageStaticBucket",
       "Effect": "Allow",
       "Action": [
+        "s3:CreateBucket",
         "s3:Get*",
         "s3:List*",
-        "s3:PutObject",
-        "s3:DeleteObject"
+        "s3:PutBucketPublicAccessBlock",
+        "s3:PutBucketPolicy",
+        "s3:DeleteBucketPolicy"
       ],
       "Resource": [
-        "arn:aws:s3:::static.pedaki.fr*"
+        "arn:aws:s3:::static.pedaki.fr"
       ]
     },
     {
-      "Sid": "ListAllBuckets",
+      "Sid": "ManageUsers",
       "Effect": "Allow",
       "Action": [
-        "s3:ListAllMyBuckets",
-        "s3:GetBucketLocation"
+        "iam:CreateAccessKey",
+        "iam:CreateUser"
       ],
       "Resource": [
-        "arn:aws:s3:::*"
+        "*"
       ]
     }
   ]

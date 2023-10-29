@@ -1,3 +1,5 @@
 name: infrastructure
 runtime: nodejs
 description: Pedaki Infrastructure
+config:
+  aws:region: eu-west-3

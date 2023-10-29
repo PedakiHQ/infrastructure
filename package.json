@@ -10,7 +10,7 @@
     "main": "src/aws/index.ts",
     "dependencies": {
         "@pulumi/aws": "^6.6.1",
-        "@pulumi/pulumi": "^3.91.0"
+        "@pulumi/pulumi": "^3.91.1"
     },
     "devDependencies": {
         "typescript": "^5.2.2",

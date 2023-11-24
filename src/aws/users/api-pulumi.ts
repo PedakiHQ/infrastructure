@@ -76,6 +76,16 @@ export const createApiPulumiUser = () => {
                         "arn:aws:rds:*:*:subgrp:*",
                         "arn:aws:rds:*:*:db:*",
                     ]
+                },
+                {
+                    Sid: "AllowSecrets",
+                    Action: [
+                        "secretsmanager:CreateSecret",
+                        "secretsmanager:DeleteSecret",
+                        "secretsmanager:DescribeSecret",
+                    ],
+                    Effect: "Allow",
+                    Resource: "*",
                 }
             ],
         },

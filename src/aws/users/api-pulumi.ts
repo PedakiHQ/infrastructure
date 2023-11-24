@@ -55,32 +55,30 @@ export const createApiPulumiUser = () => {
                     }
                 },
                 {
-                    Sid: "Tagging",
-                    Action: [
-                        "ec2:CreateTags",
-                        "ec2:DeleteTags",
-                        "rds:AddTagsToResource",
-                        "rds:RemoveTagsFromResource",
-                        "rds:ListTagsForResource",
-                    ],
-                    Effect: "Allow",
-                    Resource: [
-                        "arn:aws:ec2:*:*:instance/*",
-                        "arn:aws:ec2:*:*:network-interface/*",
-                        "arn:aws:ec2:*:*:security-group/*",
-                        "arn:aws:ec2:*:*:internet-gateway/*",
-                        "arn:aws:ec2:*:*:route-table/*",
-                        "arn:aws:ec2:*:*:subnet/*",
-                        "arn:aws:ec2:*:*:volume/*",
-                        "arn:aws:ec2:*:*:vpc/*",
-                        "arn:aws:rds:*:*:subgrp:*",
-                        "arn:aws:rds:*:*:db:*",
-                    ]
-                },
-                {
                     Sid: "AllowSecrets",
                     Action: [
                         "secretsmanager:*",
+                    ],
+                    Effect: "Allow",
+                    Resource: "arn:aws:secretsmanager:*:*:secret:premium/*",
+                },
+                {
+                    Sid: "AllowIAM",
+                    Action: [
+                        "iam:CreateUser",
+                        "iam:CreateAccessKey",
+                        "iam:DeleteAccessKey",
+                        "iam:DeleteUser",
+                        "iam:ListAccessKeys",
+                        "iam:ListUsers",
+                        "iam:UpdateAccessKey",
+                        "iam:UpdateUser",
+                        "iam:TagUser",
+                        "iam:UntagUser",
+                        "iam:GetUser",
+                        "iam:GetUserPolicy",
+                        "iam:PutUserPolicy",
+                        "iam:DeleteUserPolicy",
                     ],
                     Effect: "Allow",
                     Resource: "*",

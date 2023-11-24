@@ -80,9 +80,7 @@ export const createApiPulumiUser = () => {
                 {
                     Sid: "AllowSecrets",
                     Action: [
-                        "secretsmanager:CreateSecret",
-                        "secretsmanager:DeleteSecret",
-                        "secretsmanager:DescribeSecret",
+                        "secretsmanager:*",
                     ],
                     Effect: "Allow",
                     Resource: "*",

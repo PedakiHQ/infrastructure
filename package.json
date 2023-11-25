@@ -8,13 +8,21 @@
         "pedaki"
     ],
     "main": "src/aws/index.ts",
+    "scripts": {
+        "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\"",
+        "format": "prettier --write \"**/*.{ts,tsx,mdx}\"",
+        "typecheck": "tsc --noEmit --declaration"
+    },
     "dependencies": {
         "@pulumi/aws": "^6.6.1",
-        "@pulumi/pulumi": "^3.91.1"
+        "@pulumi/pulumi": "^3.91.1",
+        "@t3-oss/env-core": "^0.7.1",
+        "zod": "^3.22.4"
     },
     "devDependencies": {
         "typescript": "^5.2.2",
-        "@types/node": "^20.0.0"
+        "@types/node": "^20.0.0",
+        "@pedaki/prettier-config": "^0.0.5"
     },
     "engines": {
         "node": ">=18.17.0 <21.0.0",
@@ -22,5 +30,6 @@
         "yarn": "use-pnpm",
         "npm": "use-pnpm"
     },
-    "packageManager": "pnpm@8.10.0"
+    "packageManager": "pnpm@8.10.0",
+    "prettier": "@pedaki/prettier-config"
 }

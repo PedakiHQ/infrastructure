@@ -65,13 +65,7 @@ export const createApiPulumiUser = () => {
           ],
           Effect: 'Allow',
           Resource: '*',
-        },
-        {
-          Sid: 'cleanup',
-          Action: ['*'],
-          Effect: 'Allow',
-          Resource: '*',
-        },
+        }
       ],
     },
   });

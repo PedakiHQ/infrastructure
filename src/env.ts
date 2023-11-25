@@ -7,6 +7,9 @@ export const env = createEnv({
 
     APP_DOCKER_USERNAME: z.string(),
     APP_DOCKER_PASSWORD: z.string(),
+
+    CLOUDFLARE_CA: z.string(),
+    CLOUDFLARE_CA_KEY: z.string(),
   },
   runtimeEnv: process.env,
 });

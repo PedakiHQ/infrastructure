@@ -44,9 +44,9 @@ export const createApiPulumiUser = () => {
           Action: ['secretsmanager:*'],
           Effect: 'Allow',
           Resource: [
-              'arn:aws:secretsmanager:*:*:secret:premium/*',
-              'arn:aws:secretsmanager:*:*:secret:shared/*',
-          ]
+            'arn:aws:secretsmanager:*:*:secret:premium/*',
+            'arn:aws:secretsmanager:*:*:secret:shared/*',
+          ],
         },
         {
           Sid: 'AllowParameterStore',

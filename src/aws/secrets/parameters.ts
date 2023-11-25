@@ -19,6 +19,17 @@ export const createSharedParameters = () => {
       APP_DOCKER_PASSWORD: env.APP_DOCKER_PASSWORD,
     }),
   );
+
+  createSecret(`cloudflare`, 'Cloudflare credentials', JSON.stringify({}));
+
+  createSecret(
+    `cloudflare-ca`,
+    'Cloudflare ca base64',
+    JSON.stringify({
+      CLOUDFLARE_CA: env.CLOUDFLARE_CA,
+      CLOUDFLARE_CA_KEY: env.CLOUDFLARE_CA_KEY,
+    }),
+  );
 };
 
 function createSecret(name: string, description: string, value: string) {

@@ -43,3 +43,4 @@ jobs:
           APP_DOCKER_PASSWORD: ${{ secrets.APP_DOCKER_PASSWORD }}
           CLOUDFLARE_CA: ${{ secrets.CLOUDFLARE_CA }}
           CLOUDFLARE_CA_KEY: ${{ secrets.CLOUDFLARE_CA_KEY }}
+          CLOUDFLARE_ORIGIN_CA: ${{ secrets.CLOUDFLARE_ORIGIN_CA }}

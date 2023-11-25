@@ -21,11 +21,31 @@
       "Effect": "Allow",
       "Action": [
         "iam:CreateAccessKey",
-        "iam:CreateUser"
+        "iam:CreateUser",
+        "iam:GetUser",
+        "iam:GetUserPolicy",
+        "iam:PutUserPolicy",
+        "iam:ListAccessKeys",
+        "iam:ListAttachedUserPolicies"
       ],
       "Resource": [
         "*"
       ]
+    },
+    {
+      "Sid": "ManageParameters",
+      "Effect": "Allow",
+      "Action": [
+        "ssm:GetParameter",
+        "ssm:GetParameters",
+        "ssm:PutParameter",
+        "ssm:DeleteParameter",
+        "ssm:DescribeParameters",
+        "ssm:ListTagsForResource",
+        "ssm:AddTagsToResource",
+        "ssm:RemoveTagsFromResource"
+      ],
+      "Resource": "*"
     }
   ]
 }

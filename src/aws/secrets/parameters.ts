@@ -27,7 +27,21 @@ export const createSharedParameters = () => {
     'Cloudflare ca base64',
     JSON.stringify({
       CLOUDFLARE_CA: env.CLOUDFLARE_CA,
+    }),
+  );
+
+  createSecret(
+    `cloudflare-ca-key`,
+    'Cloudflare ca-key base64',
+    JSON.stringify({
       CLOUDFLARE_CA_KEY: env.CLOUDFLARE_CA_KEY,
+    }),
+  );
+
+  createSecret(
+    `cloudflare-origin-ca`,
+    'Cloudflare origin ca base64',
+    JSON.stringify({
       CLOUDFLARE_ORIGIN_CA: env.CLOUDFLARE_ORIGIN_CA,
     }),
   );

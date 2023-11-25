@@ -65,7 +65,7 @@ export const createApiPulumiUser = () => {
           ],
           Effect: 'Allow',
           Resource: '*',
-        }
+        },
       ],
     },
   });

@@ -56,13 +56,7 @@ export const createApiPulumiUser = () => {
         },
         {
           Sid: 'AllowIAM',
-          Action: [
-            'iam:CreateInstanceProfile',
-            'iam:DeleteInstanceProfile',
-            'iam:TagInstanceProfile',
-            'iam:UntagInstanceProfile',
-            'iam:GetInstanceProfile',
-          ],
+          Action: ['iam:*'],
           Effect: 'Allow',
           Resource: '*',
         },

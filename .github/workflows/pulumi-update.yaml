@@ -44,3 +44,4 @@ jobs:
           CLOUDFLARE_CA: ${{ secrets.CLOUDFLARE_CA }}
           CLOUDFLARE_CA_KEY: ${{ secrets.CLOUDFLARE_CA_KEY }}
           CLOUDFLARE_ORIGIN_CA: ${{ secrets.CLOUDFLARE_ORIGIN_CA }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

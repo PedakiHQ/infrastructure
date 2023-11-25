@@ -20,7 +20,13 @@ export const createSharedParameters = () => {
     }),
   );
 
-  createSecret(`cloudflare`, 'Cloudflare credentials', JSON.stringify({}));
+  createSecret(
+    `cloudflare`,
+    'Cloudflare credentials',
+    JSON.stringify({
+      CLOUDFLARE_API_TOKEN: env.CLOUDFLARE_API_TOKEN,
+    }),
+  );
 
   createSecret(
     `cloudflare-ca`,

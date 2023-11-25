@@ -10,6 +10,7 @@ export const env = createEnv({
 
     CLOUDFLARE_CA: z.string(),
     CLOUDFLARE_CA_KEY: z.string(),
+    CLOUDFLARE_ORIGIN_CA: z.string(),
   },
   runtimeEnv: process.env,
 });

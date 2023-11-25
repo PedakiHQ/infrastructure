@@ -28,6 +28,7 @@ export const createSharedParameters = () => {
     JSON.stringify({
       CLOUDFLARE_CA: env.CLOUDFLARE_CA,
       CLOUDFLARE_CA_KEY: env.CLOUDFLARE_CA_KEY,
+      CLOUDFLARE_ORIGIN_CA: env.CLOUDFLARE_ORIGIN_CA,
     }),
   );
 };

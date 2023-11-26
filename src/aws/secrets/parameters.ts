@@ -21,6 +21,14 @@ export const createSharedParameters = () => {
   );
 
   createSecret(
+    `baselime`,
+    'Baselime credentials',
+    JSON.stringify({
+      BASELIME_API_KEY: env.BASELIME_API_KEY,
+    }),
+  );
+
+  createSecret(
     `cloudflare`,
     'Cloudflare credentials',
     JSON.stringify({

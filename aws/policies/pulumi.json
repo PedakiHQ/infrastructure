@@ -46,6 +46,17 @@
         "ssm:RemoveTagsFromResource"
       ],
       "Resource": "*"
+    },
+    {
+      "Sid": "ManageRdsParameters",
+      "Effect": "Allow",
+      "Action": [
+        "rds:DescribeDBParameters",
+        "rds:CreateDBParameterGroup",
+        "rds:ListTagsForResource",
+        "rds:DescribeDBParameterGroups"
+      ],
+      "Resource": "*"
     }
   ]
 }

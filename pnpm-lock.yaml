@@ -20,8 +20,8 @@ dependencies:
 
 devDependencies:
   '@pedaki/prettier-config':
-    specifier: ^0.0.5
-    version: 0.0.5(prettier@3.1.0)
+    specifier: ^0.4.0
+    version: 0.4.2(prettier@3.1.0)
   '@types/node':
     specifier: ^20.10.0
     version: 20.10.0
@@ -446,18 +446,17 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
-  /@pedaki/prettier-config@0.0.5(prettier@3.1.0):
-    resolution: {integrity: sha512-1+DuPtZaf0ZbtrpBhXikrFm/VcOMR279bmwxSDZfOiFskPkYdruer9QWZVZg9tY6JlZ7cSs1xi9yaYZgYZ5Vfg==}
+  /@pedaki/prettier-config@0.4.2(prettier@3.1.0):
+    resolution: {integrity: sha512-ocoeOsJMJYKlNL1lI+axn6zssqkgBNfC9nhUoIsIdI+uijgKuNkJB3AUBMJ+v3CuYB1vScrVF/MWPYJq0aeg6A==}
     peerDependencies:
       prettier: ^3.0.2
     dependencies:
       '@ianvs/prettier-plugin-sort-imports': 4.1.1(prettier@3.1.0)
       prettier: 3.1.0
-      prettier-plugin-tailwindcss: 0.5.7(@ianvs/prettier-plugin-sort-imports@4.1.1)(prettier@3.1.0)
+      prettier-plugin-tailwindcss: 0.5.9(@ianvs/prettier-plugin-sort-imports@4.1.1)(prettier@3.1.0)
     transitivePeerDependencies:
       - '@prettier/plugin-pug'
       - '@shopify/prettier-plugin-liquid'
-      - '@shufo/prettier-plugin-blade'
       - '@trivago/prettier-plugin-sort-imports'
       - '@vue/compiler-sfc'
       - prettier-plugin-astro
@@ -1418,14 +1417,13 @@ packages:
       find-up: 6.3.0
     dev: false
 
-  /prettier-plugin-tailwindcss@0.5.7(@ianvs/prettier-plugin-sort-imports@4.1.1)(prettier@3.1.0):
-    resolution: {integrity: sha512-4v6uESAgwCni6YF6DwJlRaDjg9Z+al5zM4JfngcazMy4WEf/XkPS5TEQjbD+DZ5iNuG6RrKQLa/HuX2SYzC3kQ==}
+  /prettier-plugin-tailwindcss@0.5.9(@ianvs/prettier-plugin-sort-imports@4.1.1)(prettier@3.1.0):
+    resolution: {integrity: sha512-9x3t1s2Cjbut2QiP+O0mDqV3gLXTe2CgRlQDgucopVkUdw26sQi53p/q4qvGxMLBDfk/dcTV57Aa/zYwz9l8Ew==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
       '@prettier/plugin-pug': '*'
       '@shopify/prettier-plugin-liquid': '*'
-      '@shufo/prettier-plugin-blade': '*'
       '@trivago/prettier-plugin-sort-imports': '*'
       prettier: ^3.0
       prettier-plugin-astro: '*'
@@ -1444,8 +1442,6 @@ packages:
       '@prettier/plugin-pug':
         optional: true
       '@shopify/prettier-plugin-liquid':
-        optional: true
-      '@shufo/prettier-plugin-blade':
         optional: true
       '@trivago/prettier-plugin-sort-imports':
         optional: true

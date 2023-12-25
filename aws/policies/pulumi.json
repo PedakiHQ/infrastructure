@@ -10,6 +10,7 @@
         "s3:List*",
         "s3:PutBucketPublicAccessBlock",
         "s3:PutBucketPolicy",
+        "s3:PutEncryptionConfiguration",
         "s3:DeleteBucketPolicy"
       ],
       "Resource": [

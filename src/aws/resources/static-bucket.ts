@@ -7,7 +7,7 @@ export const createStaticBucket = () => {
     bucket: 'static.pedaki.fr',
   });
 
-  const publicAccessBlock = new aws.s3.BucketPublicAccessBlock('publicAccessBlock', {
+  const publicAccessBlock = new aws.s3.BucketPublicAccessBlock('static.pedaki.fr-publicAccessBlock', {
     bucket: bucket.id,
     blockPublicAcls: false,
     blockPublicPolicy: false,
@@ -16,7 +16,7 @@ export const createStaticBucket = () => {
   });
 
   const _ = new aws.s3.BucketPolicy(
-    'bucket-policy',
+    'static-bucket-policy',
     {
       bucket: bucket.id,
       policy: bucket.arn.apply(arn =>

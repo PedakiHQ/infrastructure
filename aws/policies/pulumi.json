@@ -13,6 +13,7 @@
         "s3:DeleteBucketPolicy"
       ],
       "Resource": [
+        "arn:aws:s3:::files.pedaki.fr",
         "arn:aws:s3:::static.pedaki.fr"
       ]
     },

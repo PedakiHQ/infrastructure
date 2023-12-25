@@ -43,6 +43,6 @@ export const createStaticBucket = () => {
     zoneId: env.CLOUDFLARE_ZONE_ID,
     proxied: true,
     ttl: 1, // TTL must be set to 1 when proxied is true
-    comment: `Automatically created by Pulumi`,
+    comment: `pulumi (infrastructure repo)`,
   });
 };

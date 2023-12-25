@@ -16,13 +16,16 @@ export const createFilesBucket = () => {
     },
   });
 
-  const publicAccessBlock = new aws.s3.BucketPublicAccessBlock('files.pedaki.fr-publicAccessBlock', {
-    bucket: bucket.id,
-    blockPublicAcls: false,
-    blockPublicPolicy: false,
-    ignorePublicAcls: false,
-    restrictPublicBuckets: false,
-  });
+  const publicAccessBlock = new aws.s3.BucketPublicAccessBlock(
+    'files.pedaki.fr-publicAccessBlock',
+    {
+      bucket: bucket.id,
+      blockPublicAcls: true,
+      ignorePublicAcls: true,
+      blockPublicPolicy: false,
+      restrictPublicBuckets: false,
+    },
+  );
 
   const policy = new aws.s3.BucketPolicy(
     'files-bucket-policy',
@@ -42,6 +45,30 @@ export const createFilesBucket = () => {
               Condition: {
                 StringNotEquals: {
                   's3:x-amz-server-side-encryption': 'aws:kms',
+                },
+              },
+            },
+            {
+              Sid: 'AllowPublicReadAccess',
+              Effect: 'Allow',
+              Principal: '*',
+              Action: 's3:GetObject',
+              Resource: `${arn}/*`,
+              Condition: {
+                StringEquals: {
+                  's3:ExistingObjectTag/public': 'true',
+                },
+              },
+            },
+            {
+              Sid: 'DenyPublicReadAccess',
+              Effect: 'Deny',
+              Principal: '*',
+              Action: 's3:GetObject',
+              Resource: `${arn}/*`,
+              Condition: {
+                StringNotEquals: {
+                  's3:ExistingObjectTag/public': 'true',
                 },
               },
             },

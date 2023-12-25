@@ -60,6 +60,17 @@ export const createApiPulumiUser = () => {
           Effect: 'Allow',
           Resource: '*',
         },
+        {
+          Sid: 'AllowS3',
+          Action: ['s3:*'],
+          Effect: 'Allow',
+          Resource: [
+            'arn:aws:s3:::files.pedaki.fr',
+            'arn:aws:s3:::files.pedaki.fr/*',
+            'arn:aws:s3:::static.pedaki.fr',
+            'arn:aws:s3:::static.pedaki.fr/*',
+          ],
+        },
       ],
     },
   });

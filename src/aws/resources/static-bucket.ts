@@ -7,13 +7,16 @@ export const createStaticBucket = () => {
     bucket: 'static.pedaki.fr',
   });
 
-  const publicAccessBlock = new aws.s3.BucketPublicAccessBlock('static.pedaki.fr-publicAccessBlock', {
-    bucket: bucket.id,
-    blockPublicAcls: false,
-    blockPublicPolicy: false,
-    ignorePublicAcls: false,
-    restrictPublicBuckets: false,
-  });
+  const publicAccessBlock = new aws.s3.BucketPublicAccessBlock(
+    'static.pedaki.fr-publicAccessBlock',
+    {
+      bucket: bucket.id,
+      blockPublicAcls: false,
+      ignorePublicAcls: false,
+      blockPublicPolicy: false,
+      restrictPublicBuckets: false,
+    },
+  );
 
   const _ = new aws.s3.BucketPolicy(
     'static-bucket-policy',

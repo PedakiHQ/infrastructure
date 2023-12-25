@@ -1,4 +1,6 @@
 import * as aws from '@pulumi/aws';
+import * as cloudflare from '@pulumi/cloudflare';
+import { env } from '../../env';
 
 export const createStaticBucket = () => {
   const bucket = new aws.s3.Bucket('static.pedaki.fr', {
@@ -33,4 +35,14 @@ export const createStaticBucket = () => {
     },
     { dependsOn: [publicAccessBlock] },
   );
+
+  const record = new cloudflare.Record('static.pedaki.fr', {
+    name: 'static',
+    type: 'CNAME',
+    value: bucket.bucketDomainName,
+    zoneId: env.CLOUDFLARE_ZONE_ID,
+    proxied: true,
+    ttl: 1, // TTL must be set to 1 when proxied is true
+    comment: `Automatically created by Pulumi`,
+  });
 };

@@ -12,6 +12,7 @@ export const env = createEnv({
     CLOUDFLARE_CA_KEY: z.string(),
     CLOUDFLARE_ORIGIN_CA: z.string(),
     CLOUDFLARE_API_TOKEN: z.string(),
+    CLOUDFLARE_ZONE_ID: z.string(),
 
     BASELIME_API_KEY: z.string(),
   },

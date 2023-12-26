@@ -1,4 +1,5 @@
 import * as aws from '@pulumi/aws';
+import { TAGS } from '../constants';
 
 export const createRdsParameterGroup = () => {
   const group = new aws.rds.ParameterGroup('rds-pedaki', {
@@ -6,5 +7,6 @@ export const createRdsParameterGroup = () => {
     description: 'Shared parameter group',
     name: 'rds-pedaki',
     parameters: [{ name: 'require_secure_transport', value: '1' }],
+    tags: TAGS,
   });
 };

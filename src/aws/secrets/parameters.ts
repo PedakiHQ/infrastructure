@@ -1,5 +1,6 @@
 import * as aws from '@pulumi/aws';
 import { env } from '../../env';
+import { TAGS } from '../constants';
 
 export const createSharedParameters = () => {
   createSecret(
@@ -67,6 +68,7 @@ function createSecret(name: string, description: string, value: string) {
     description,
     type: 'SecureString',
     value: value,
+    tags: TAGS,
   });
 
   return secret.name;

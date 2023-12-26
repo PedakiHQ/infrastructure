@@ -1,10 +1,13 @@
 import * as aws from '@pulumi/aws';
 import * as cloudflare from '@pulumi/cloudflare';
 import { env } from '../../env';
+import { TAGS } from '../constants';
 
 export const createStaticBucket = () => {
   const bucket = new aws.s3.Bucket('static.pedaki.fr', {
     bucket: 'static.pedaki.fr',
+    acl: 'public-read',
+    tags: TAGS,
   });
 
   const publicAccessBlock = new aws.s3.BucketPublicAccessBlock(

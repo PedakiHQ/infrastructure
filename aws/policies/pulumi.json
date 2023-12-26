@@ -11,10 +11,12 @@
         "s3:PutBucketPublicAccessBlock",
         "s3:PutBucketPolicy",
         "s3:PutEncryptionConfiguration",
-        "s3:DeleteBucketPolicy"
+        "s3:DeleteBucketPolicy",
+        "s3:PutBucketTagging"
       ],
       "Resource": [
         "arn:aws:s3:::files.pedaki.fr",
+        "arn:aws:s3:::encrypted.pedaki.fr",
         "arn:aws:s3:::static.pedaki.fr"
       ]
     },
@@ -28,7 +30,9 @@
         "iam:GetUserPolicy",
         "iam:PutUserPolicy",
         "iam:ListAccessKeys",
-        "iam:ListAttachedUserPolicies"
+        "iam:ListAttachedUserPolicies",
+        "iam:TagUser",
+        "iam:UntagUser"
       ],
       "Resource": [
         "*"
@@ -56,6 +60,8 @@
         "rds:DescribeDBParameters",
         "rds:CreateDBParameterGroup",
         "rds:ListTagsForResource",
+        "rds:AddTagsToResource",
+        "rds:RemoveTagsFromResource",
         "rds:DescribeDBParameterGroups"
       ],
       "Resource": "*"

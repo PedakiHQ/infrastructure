@@ -3,26 +3,34 @@ import * as cloudflare from '@pulumi/cloudflare';
 import { env } from '../../env';
 import { TAGS } from '../constants';
 
-export const createFilesBucket = () => {
-  const bucket = new aws.s3.Bucket('files.pedaki.fr', {
-    bucket: 'files.pedaki.fr',
+export const createEncryptedBucket = () => {
+  const bucket = new aws.s3.Bucket('encrypted.pedaki.fr', {
+    bucket: 'encrypted.pedaki.fr',
     acl: 'private',
+    serverSideEncryptionConfiguration: {
+      rule: {
+        applyServerSideEncryptionByDefault: {
+          sseAlgorithm: 'aws:kms',
+        },
+        bucketKeyEnabled: true,
+      },
+    },
     tags: TAGS,
   });
 
   const publicAccessBlock = new aws.s3.BucketPublicAccessBlock(
-    'files.pedaki.fr-publicAccessBlock',
+    'encrypted.pedaki.fr-publicAccessBlock',
     {
       bucket: bucket.id,
-      blockPublicAcls: false,
-      ignorePublicAcls: false,
-      blockPublicPolicy: false,
-      restrictPublicBuckets: false,
+      blockPublicAcls: true,
+      ignorePublicAcls: true,
+      blockPublicPolicy: true,
+      restrictPublicBuckets: true,
     },
   );
 
   const policy = new aws.s3.BucketPolicy(
-    'files-bucket-policy',
+    'encrypted-bucket-policy',
     {
       bucket: bucket.id,
       policy: bucket.arn.apply(arn =>
@@ -31,26 +39,26 @@ export const createFilesBucket = () => {
           Version: '2012-10-17',
           Statement: [
             {
-              Sid: 'AllowPublicReadAccess',
-              Effect: 'Allow',
+              Sid: 'DenyUnEncryptedObjectUploads',
+              Effect: 'Deny',
               Principal: '*',
-              Action: 's3:GetObject',
+              Action: 's3:PutObject',
               Resource: `${arn}/*`,
               Condition: {
-                StringEquals: {
-                  's3:ExistingObjectTag/public': 'true',
+                StringNotEquals: {
+                  's3:x-amz-server-side-encryption': 'aws:kms',
                 },
               },
             },
             {
-              Sid: 'DenyPublicReadAccess',
+              Sid: 'DenyUnEncryptedObjectDownloads',
               Effect: 'Deny',
               Principal: '*',
               Action: 's3:GetObject',
               Resource: `${arn}/*`,
               Condition: {
-                StringNotEquals: {
-                  's3:ExistingObjectTag/public': 'true',
+                Bool: {
+                  'aws:SecureTransport': 'false',
                 },
               },
             },
@@ -61,8 +69,8 @@ export const createFilesBucket = () => {
     { dependsOn: [publicAccessBlock] },
   );
 
-  const record = new cloudflare.Record('files.pedaki.fr', {
-    name: 'files',
+  const record = new cloudflare.Record('encrypted.pedaki.fr', {
+    name: 'encrypted',
     type: 'CNAME',
     value: bucket.bucketDomainName,
     zoneId: env.CLOUDFLARE_ZONE_ID,

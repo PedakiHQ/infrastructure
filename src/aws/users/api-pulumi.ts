@@ -1,9 +1,11 @@
 import * as aws from '@pulumi/aws';
+import { TAGS } from '../constants';
 
 export const createApiPulumiUser = () => {
   // IAM user that will be responsible to create the ec2, rds, etc. for the whole stack
   const user = new aws.iam.User('api-pulumi', {
     name: 'api-pulumi',
+    tags: TAGS,
   });
 
   const _ = new aws.iam.UserPolicy('api-pulumi-policy', {
@@ -69,6 +71,8 @@ export const createApiPulumiUser = () => {
             'arn:aws:s3:::files.pedaki.fr/*',
             'arn:aws:s3:::static.pedaki.fr',
             'arn:aws:s3:::static.pedaki.fr/*',
+            'arn:aws:s3:::encrypted.pedaki.fr',
+            'arn:aws:s3:::encrypted.pedaki.fr/*',
           ],
         },
       ],

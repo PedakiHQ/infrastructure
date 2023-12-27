@@ -10,6 +10,16 @@ export const createFilesBucket = () => {
     tags: TAGS,
   });
 
+  const bucketOwnerEnforced = new aws.s3.BucketOwnershipControls(
+    'files.pedaki.fr-bucketOwnerEnforced',
+    {
+      bucket: bucket.id,
+      rule: {
+        objectOwnership: 'BucketOwnerPreferred',
+      },
+    },
+  );
+
   const publicAccessBlock = new aws.s3.BucketPublicAccessBlock(
     'files.pedaki.fr-publicAccessBlock',
     {
@@ -19,24 +29,31 @@ export const createFilesBucket = () => {
       blockPublicPolicy: false,
       restrictPublicBuckets: false,
     },
+    {
+      dependsOn: [bucketOwnerEnforced],
+    },
   );
 
-  const _ = new aws.s3.BucketPolicy('files-bucket-policy', {
-    bucket: bucket.id,
-    policy: bucket.arn.apply(arn =>
-      JSON.stringify({
-        Version: '2012-10-17',
-        Statement: [
-          {
-            Effect: 'Allow',
-            Principal: '*',
-            Action: ['s3:GetObject'],
-            Resource: [`${arn}/*`],
-          },
-        ],
-      }),
-    ),
-  });
+  const _ = new aws.s3.BucketPolicy(
+    'files-bucket-policy',
+    {
+      bucket: bucket.id,
+      policy: bucket.arn.apply(arn =>
+        JSON.stringify({
+          Version: '2012-10-17',
+          Statement: [
+            {
+              Effect: 'Allow',
+              Principal: '*',
+              Action: ['s3:GetObject'],
+              Resource: [`${arn}/*`],
+            },
+          ],
+        }),
+      ),
+    },
+    { dependsOn: [publicAccessBlock] },
+  );
 
   const record = new cloudflare.Record('files.pedaki.fr', {
     name: 'files',

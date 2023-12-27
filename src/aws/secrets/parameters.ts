@@ -33,6 +33,7 @@ export const createSharedParameters = () => {
     `cloudflare`,
     'Cloudflare credentials',
     JSON.stringify({
+      CLOUDFLARE_ZONE_ID: env.CLOUDFLARE_ZONE_ID,
       CLOUDFLARE_API_TOKEN: env.CLOUDFLARE_API_TOKEN,
     }),
   );

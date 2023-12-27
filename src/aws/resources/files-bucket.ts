@@ -6,7 +6,7 @@ import { TAGS } from '../constants';
 export const createFilesBucket = () => {
   const bucket = new aws.s3.Bucket('files.pedaki.fr', {
     bucket: 'files.pedaki.fr',
-    acl: 'private',
+    acl: 'public-read',
     tags: TAGS,
   });
 
@@ -21,45 +21,22 @@ export const createFilesBucket = () => {
     },
   );
 
-  const policy = new aws.s3.BucketPolicy(
-    'files-bucket-policy',
-    {
-      bucket: bucket.id,
-      policy: bucket.arn.apply(arn =>
-        JSON.stringify({
-          // all files should be encrypted
-          Version: '2012-10-17',
-          Statement: [
-            {
-              Sid: 'AllowPublicReadAccess',
-              Effect: 'Allow',
-              Principal: '*',
-              Action: 's3:GetObject',
-              Resource: `${arn}/*`,
-              Condition: {
-                StringEquals: {
-                  's3:ExistingObjectTag/public': 'true',
-                },
-              },
-            },
-            {
-              Sid: 'DenyPublicReadAccess',
-              Effect: 'Deny',
-              Principal: '*',
-              Action: 's3:GetObject',
-              Resource: `${arn}/*`,
-              Condition: {
-                StringNotEquals: {
-                  's3:ExistingObjectTag/public': 'true',
-                },
-              },
-            },
-          ],
-        }),
-      ),
-    },
-    { dependsOn: [publicAccessBlock] },
-  );
+  const _ = new aws.s3.BucketPolicy('files-bucket-policy', {
+    bucket: bucket.id,
+    policy: bucket.arn.apply(arn =>
+      JSON.stringify({
+        Version: '2012-10-17',
+        Statement: [
+          {
+            Effect: 'Allow',
+            Principal: '*',
+            Action: ['s3:GetObject'],
+            Resource: [`${arn}/*`],
+          },
+        ],
+      }),
+    ),
+  });
 
   const record = new cloudflare.Record('files.pedaki.fr', {
     name: 'files',

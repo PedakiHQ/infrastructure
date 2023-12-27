@@ -21,26 +21,22 @@ export const createStaticBucket = () => {
     },
   );
 
-  const _ = new aws.s3.BucketPolicy(
-    'static-bucket-policy',
-    {
-      bucket: bucket.id,
-      policy: bucket.arn.apply(arn =>
-        JSON.stringify({
-          Version: '2012-10-17',
-          Statement: [
-            {
-              Effect: 'Allow',
-              Principal: '*',
-              Action: ['s3:GetObject'],
-              Resource: [`${arn}/*`],
-            },
-          ],
-        }),
-      ),
-    },
-    { dependsOn: [publicAccessBlock] },
-  );
+  const _ = new aws.s3.BucketPolicy('static-bucket-policy', {
+    bucket: bucket.id,
+    policy: bucket.arn.apply(arn =>
+      JSON.stringify({
+        Version: '2012-10-17',
+        Statement: [
+          {
+            Effect: 'Allow',
+            Principal: '*',
+            Action: ['s3:GetObject'],
+            Resource: [`${arn}/*`],
+          },
+        ],
+      }),
+    ),
+  });
 
   const record = new cloudflare.Record('static.pedaki.fr', {
     name: 'static',

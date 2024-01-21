@@ -6,7 +6,8 @@ export const createRdsParameterGroup = () => {
     family: 'postgres16',
     description: 'Shared parameter group',
     name: 'rds-pedaki',
-    parameters: [{ name: 'require_secure_transport', value: '1' }],
+    parameters: [
+    ],
     tags: TAGS,
   });
 };

@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@pulumi/aws':
     specifier: ^6.18.1
-    version: 6.18.1
+    version: 6.23.0
   '@pulumi/cloudflare':
     specifier: ^5.18.1
     version: 5.21.0
@@ -518,8 +518,8 @@ packages:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
     dev: false
 
-  /@pulumi/aws@6.18.1:
-    resolution: {integrity: sha512-72/j9kAFXetO7BaL8XAI0FF2R9OleAJp/X/FcKAcpDMbgB4eSu3wy7/DdJ/PXhIhyIkMgYkYyy4yu/OvXYaHKw==}
+  /@pulumi/aws@6.23.0:
+    resolution: {integrity: sha512-Ib8M55N0OgAv1+1O2IyQToMhN4AdRrQECq/hVXinoK7696RT/3SiVr6Q05OLqEOiFQhzEFmVwB50zwArhDxTxA==}
     dependencies:
       '@pulumi/pulumi': 3.102.0
       builtin-modules: 3.0.0

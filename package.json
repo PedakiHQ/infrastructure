@@ -17,7 +17,7 @@
         "@pulumi/aws": "^6.31.1",
         "@pulumi/pulumi": "^3.113.2",
         "@pulumi/cloudflare": "^5.26.0",
-        "@t3-oss/env-core": "^0.9.2",
+        "@t3-oss/env-core": "^0.10.0",
         "zod": "^3.22.5"
     },
     "devDependencies": {

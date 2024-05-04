@@ -28,7 +28,7 @@ export const createSharedParameters = () => {
       BASELIME_API_KEY: env.BASELIME_API_KEY,
       OTLP_ENDPOINT: 'https://otel.baselime.io/v1',
       OTLP_HEADERS: `x-api-key=${env.BASELIME_API_KEY}`,
-      TRANSPORTERS: "other,otlp"
+      TRANSPORTERS: 'other,otlp',
     }),
   );
 
